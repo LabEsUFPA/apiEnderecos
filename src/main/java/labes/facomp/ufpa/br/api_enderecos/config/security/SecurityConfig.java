@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -51,15 +50,14 @@ public class SecurityConfig {
 								"/v3/api-docs/**",
 								"/swagger-ui/**",
 								"/swagger-ui.html",
-								"/egressoValido",
-								"/mapa",
-								"/publico/egresso**/**",
+								"/cidade",
+								"/estado",
+								"/pais",
 								"/")
 						.permitAll()
 						.requestMatchers(HttpMethod.GET, "/anuncio**/**")
 						.permitAll()
 						.anyRequest().authenticated())
-				.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
 				.sessionManagement(session -> session
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.exceptionHandling(exeption -> exeption
