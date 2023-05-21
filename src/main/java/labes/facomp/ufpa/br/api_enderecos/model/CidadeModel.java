@@ -36,7 +36,7 @@ public class CidadeModel {
 	private PaisModel pais;
 
 	@Column(name = "name", nullable = false)
-	private String name;
+	private String nome;
 
 	@Column(name = "state_code", nullable = false)
 	private String stateCode;

@@ -1,15 +1,15 @@
 package labes.facomp.ufpa.br.api_enderecos.repository;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import labes.facomp.ufpa.br.api_enderecos.model.PaisModel;
 
 public interface PaisRepository extends CrudRepository<PaisModel, Integer> {
 
-    List<PaisModel> findAll();
+    Page<PaisModel> findAll(Pageable pageable);
 
-    List<PaisModel> findByNomeContainsIgnoreCase(String nome);
+    Page<PaisModel> findByNomeContainsIgnoreCase(String nome, Pageable pageable);
 
 }

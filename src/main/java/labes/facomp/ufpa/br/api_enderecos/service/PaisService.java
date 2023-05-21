@@ -1,7 +1,9 @@
 package labes.facomp.ufpa.br.api_enderecos.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import labes.facomp.ufpa.br.api_enderecos.model.PaisModel;
@@ -14,12 +16,13 @@ public class PaisService {
 
     private final PaisRepository paisRepository;
 
-    public List<PaisModel> findAll() {
-        return paisRepository.findAll();
+    public Page<PaisModel> findAll(int page, int size, Direction direction) {
+        return paisRepository.findAll(PageRequest.of(page, size, Sort.by(direction, "nome")));
     }
 
-    public List<PaisModel> findByNome(String nome) {
-        return paisRepository.findByNomeContainsIgnoreCase(nome);
+    public Page<PaisModel> findByNome(String nome, int page, int size, Direction direction) {
+        return paisRepository.findByNomeContainsIgnoreCase(nome,
+                PageRequest.of(page, size, Sort.by(direction, "nome")));
     }
 
 }

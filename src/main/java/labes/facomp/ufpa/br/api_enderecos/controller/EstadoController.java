@@ -1,9 +1,8 @@
 package labes.facomp.ufpa.br.api_enderecos.controller;
 
-import java.util.List;
-
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,16 +25,20 @@ public class EstadoController {
 
     @GetMapping(params = "id")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<EstadoDTO> findByPaisId(@RequestParam(required = false, defaultValue = "1") Integer id) {
-        return mapper.map(estadoService.findByPaisId(id), new TypeToken<List<EstadoDTO>>() {
-        }.getType());
+    public Page<EstadoDTO> findByPaisId(@RequestParam(required = false, defaultValue = "1") Integer id,
+            @RequestParam(defaultValue = "0", required = false) Integer page,
+            @RequestParam(defaultValue = "20", required = false) Integer size,
+            @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
+        return estadoService.findByPaisId(id, page, size, direction).map(e -> mapper.map(e, EstadoDTO.class));
     }
 
     @GetMapping(params = "nome")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<EstadoDTO> findByPaisNome(@RequestParam(required = false, defaultValue = "") String nome) {
-        return mapper.map(estadoService.findByPaisNome(nome), new TypeToken<List<EstadoDTO>>() {
-        }.getType());
+    public Page<EstadoDTO> findByPaisNome(@RequestParam(required = false, defaultValue = "") String nome,
+            @RequestParam(defaultValue = "0", required = false) Integer page,
+            @RequestParam(defaultValue = "20", required = false) Integer size,
+            @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
+        return estadoService.findByPaisNome(nome, page, size, direction).map(e -> mapper.map(e, EstadoDTO.class));
     }
 
 }

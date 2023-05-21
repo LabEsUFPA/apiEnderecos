@@ -11,6 +11,12 @@ spring:
     default-property-inclusion: NON_NULL
   jpa:
     defer-datasource-initialization: true
+  data:
+    web:
+      pageable:
+        default-page-size: 30
+        max-page-size: 100
+      sort.sort-parameter: ASC
 
 
 

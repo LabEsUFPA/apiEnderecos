@@ -1,7 +1,9 @@
 package labes.facomp.ufpa.br.api_enderecos.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import labes.facomp.ufpa.br.api_enderecos.model.CidadeModel;
@@ -14,12 +16,14 @@ public class CidadeService {
 
     private final CidadeRepository cidadeRepository;
 
-    public List<CidadeModel> findByEstadoNome(String estado) {
-        return cidadeRepository.findByEstadoNomeContainsIgnoreCase(estado);
+    public Page<CidadeModel> findByEstadoNome(String estado, int page, int size, Direction direction) {
+        return cidadeRepository.findByEstadoNomeContainsIgnoreCase(estado,
+                PageRequest.of(page, size, Sort.by(direction, "nome")));
     }
 
-    public List<CidadeModel> findByEstadoId(Integer estadoId) {
-        return cidadeRepository.findByEstadoId(estadoId);
+    public Page<CidadeModel> findByEstadoId(Integer estadoId, int page, int size, Direction direction) {
+        return cidadeRepository.findByEstadoId(estadoId,
+                PageRequest.of(page, size, Sort.by(direction, "nome")));
     }
 
 }
