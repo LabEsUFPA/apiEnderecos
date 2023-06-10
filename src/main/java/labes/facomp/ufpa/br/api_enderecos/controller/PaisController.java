@@ -28,8 +28,9 @@ public class PaisController {
     public Page<PaisDTO> findAll(
             @RequestParam(defaultValue = "0", required = false) Integer page,
             @RequestParam(defaultValue = "20", required = false) Integer size,
-            @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
-        return paisService.findAll(page, size, direction).map(e -> mapper.map(e, PaisDTO.class));
+            @RequestParam(defaultValue = "ASC", required = false) Direction direction,
+            @RequestParam(defaultValue = "pt-BR", required = false) String internacionalizacao) {
+        return paisService.findAll(page, size, direction, internacionalizacao).map(e -> mapper.map(e, PaisDTO.class));
     }
 
     @GetMapping(params = { "nome" })
@@ -37,9 +38,11 @@ public class PaisController {
     public Page<PaisDTO> findByNome(@RequestParam(required = false, defaultValue = "") String nome,
             @RequestParam(defaultValue = "0", required = false) Integer page,
             @RequestParam(defaultValue = "20", required = false) Integer size,
-            @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
+            @RequestParam(defaultValue = "ASC", required = false) Direction direction,
+            @RequestParam(defaultValue = "pt-BR", required = false) String internacionalizacao) {
 
-        return paisService.findByNome(nome, page, size, direction).map(e -> mapper.map(e, PaisDTO.class));
+        return paisService.findByNome(nome, page, size, direction,
+                internacionalizacao).map(e -> mapper.map(e, PaisDTO.class));
 
     }
 

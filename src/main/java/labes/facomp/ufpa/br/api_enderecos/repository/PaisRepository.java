@@ -10,6 +10,6 @@ public interface PaisRepository extends CrudRepository<PaisModel, Integer> {
 
     Page<PaisModel> findAll(Pageable pageable);
 
-    Page<PaisModel> findByNomeContainsIgnoreCase(String nome, Pageable pageable);
+    Page<PaisModel> findByTraducoesContainsIgnoreCase(String nome, Pageable pageable);
 
 }
