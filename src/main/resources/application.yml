@@ -64,6 +64,11 @@ rsa:
 # Server configuration
 server:
   port: ${APP_PORT}
+  forward-headers-strategy: framework
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
   compression:
     enabled: true
     min-response-size: 2048

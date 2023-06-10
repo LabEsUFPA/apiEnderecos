@@ -14,6 +14,13 @@ import labes.facomp.ufpa.br.api_enderecos.dto.CidadeDTO;
 import labes.facomp.ufpa.br.api_enderecos.service.CidadeService;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Responsável por fornecer um end-point para criar um novo anuncio.
+ *
+ * @author Alfredo Gabriel
+ * @since 21/04/2023
+ * @version 1.0
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/cidade")
@@ -23,6 +30,14 @@ public class CidadeController {
 
     private final ModelMapper mapper;
 
+    /**
+     *
+     * @param id
+     * @param page
+     * @param size
+     * @param direction
+     * @return
+     */
     @GetMapping(params = "id")
     @ResponseStatus(code = HttpStatus.OK)
     public Page<CidadeDTO> findByEstado(@RequestParam(required = false, defaultValue = "1") Integer id,
@@ -32,6 +47,14 @@ public class CidadeController {
         return cidadeService.findByEstadoId(id, page, size, direction).map(e -> mapper.map(e, CidadeDTO.class));
     }
 
+    /**
+     * 
+     * @param nome
+     * @param page
+     * @param size
+     * @param direction
+     * @return
+     */
     @GetMapping(params = "nome")
     @ResponseStatus(code = HttpStatus.OK)
     public Page<CidadeDTO> findByEstado(@RequestParam(required = false, defaultValue = "") String nome,
@@ -40,5 +63,5 @@ public class CidadeController {
             @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
         return cidadeService.findByEstadoNome(nome, page, size, direction).map(e -> mapper.map(e, CidadeDTO.class));
     }
-    
+
 }

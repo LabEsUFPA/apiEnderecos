@@ -14,6 +14,13 @@ import labes.facomp.ufpa.br.api_enderecos.dto.EstadoDTO;
 import labes.facomp.ufpa.br.api_enderecos.service.EstadoService;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Responsável por fornecer um end-point para criar um novo anuncio.
+ *
+ * @author Alfredo Gabriel
+ * @since 21/04/2023
+ * @version 1.0
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/estado")
@@ -23,6 +30,14 @@ public class EstadoController {
 
     private final ModelMapper mapper;
 
+    /**
+     *
+     * @param id
+     * @param page
+     * @param size
+     * @param direction
+     * @return
+     */
     @GetMapping(params = "id")
     @ResponseStatus(code = HttpStatus.OK)
     public Page<EstadoDTO> findByPaisId(@RequestParam(required = false, defaultValue = "1") Integer id,
@@ -32,6 +47,14 @@ public class EstadoController {
         return estadoService.findByPaisId(id, page, size, direction).map(e -> mapper.map(e, EstadoDTO.class));
     }
 
+    /**
+     * 
+     * @param nome
+     * @param page
+     * @param size
+     * @param direction
+     * @return
+     */
     @GetMapping(params = "nome")
     @ResponseStatus(code = HttpStatus.OK)
     public Page<EstadoDTO> findByPaisNome(@RequestParam(required = false, defaultValue = "") String nome,

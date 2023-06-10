@@ -55,8 +55,6 @@ public class SecurityConfig {
 								"/pais",
 								"/")
 						.permitAll()
-						.requestMatchers(HttpMethod.GET, "/anuncio**/**")
-						.permitAll()
 						.anyRequest().authenticated())
 				.sessionManagement(session -> session
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
