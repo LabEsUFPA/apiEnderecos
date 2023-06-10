@@ -4,6 +4,9 @@ services:
 
   enderecos_endereco:
     image: enderecos_endereco:latest
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
     env_file:
       - .env
     ports:
