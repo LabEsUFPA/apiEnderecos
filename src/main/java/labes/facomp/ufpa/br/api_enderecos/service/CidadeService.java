@@ -26,4 +26,11 @@ public class CidadeService {
                 PageRequest.of(page, size, Sort.by(direction, "nome")));
     }
 
+    public Page<CidadeModel> findByNomeAndEstadoId(String cidadeNome, Integer estadoId, int page, int size,
+            Direction direction) {
+        return cidadeRepository.findByNomeContainsIgnoreCaseAndEstadoId(
+                cidadeNome, estadoId,
+                PageRequest.of(page, size, Sort.by(direction, "nome")));
+    }
+
 }

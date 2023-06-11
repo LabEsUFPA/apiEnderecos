@@ -49,7 +49,7 @@ public class PaisController {
     }
 
     /**
-     * 
+     *
      * @param nome
      * @param page
      * @param size
@@ -59,7 +59,8 @@ public class PaisController {
      */
     @GetMapping(params = { "nome" })
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<PaisDTO> findByNome(@RequestParam(required = false, defaultValue = "") String nome,
+    public Page<PaisDTO> findByNome(
+            @RequestParam(required = false, defaultValue = "") String nome,
             @RequestParam(defaultValue = "0", required = false) Integer page,
             @RequestParam(defaultValue = "20", required = false) Integer size,
             @RequestParam(defaultValue = "ASC", required = false) Direction direction,

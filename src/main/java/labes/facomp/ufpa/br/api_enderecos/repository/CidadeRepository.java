@@ -12,4 +12,6 @@ public interface CidadeRepository extends CrudRepository<CidadeModel, Integer> {
 
     Page<CidadeModel> findByEstadoId(Integer estadoId, Pageable pageable);
 
+    Page<CidadeModel> findByNomeContainsIgnoreCaseAndEstadoId(String nome, Integer estadoId, Pageable pageable);
+
 }

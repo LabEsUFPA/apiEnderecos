@@ -32,36 +32,59 @@ public class EstadoController {
 
     /**
      *
-     * @param id
      * @param page
      * @param size
+     * @param paisId
      * @param direction
      * @return
      */
-    @GetMapping(params = "id")
+    @GetMapping(params = "paisId")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<EstadoDTO> findByPaisId(@RequestParam(required = false, defaultValue = "1") Integer id,
+    public Page<EstadoDTO> findByPaisId(
             @RequestParam(defaultValue = "0", required = false) Integer page,
             @RequestParam(defaultValue = "20", required = false) Integer size,
+            @RequestParam(defaultValue = "31", required = false) Integer paisId,
             @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
-        return estadoService.findByPaisId(id, page, size, direction).map(e -> mapper.map(e, EstadoDTO.class));
+        return estadoService.findByPaisId(paisId, page, size, direction).map(e -> mapper.map(e, EstadoDTO.class));
     }
 
     /**
-     * 
+     *
      * @param nome
      * @param page
      * @param size
      * @param direction
      * @return
      */
-    @GetMapping(params = "nome")
+    @GetMapping(params = "nomePais")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<EstadoDTO> findByPaisNome(@RequestParam(required = false, defaultValue = "") String nome,
+    public Page<EstadoDTO> findByPaisNome(
+            @RequestParam(required = false, defaultValue = "") String nomePais,
             @RequestParam(defaultValue = "0", required = false) Integer page,
             @RequestParam(defaultValue = "20", required = false) Integer size,
             @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
-        return estadoService.findByPaisNome(nome, page, size, direction).map(e -> mapper.map(e, EstadoDTO.class));
+        return estadoService.findByPaisNome(nomePais, page, size, direction).map(e -> mapper.map(e, EstadoDTO.class));
+    }
+
+    /**
+     *
+     * @param page
+     * @param size
+     * @param paisId
+     * @param nomeEstado
+     * @param direction
+     * @return
+     */
+    @GetMapping(params = { "nomeEstado", "paisId" })
+    @ResponseStatus(code = HttpStatus.OK)
+    public Page<EstadoDTO> findByNomeAndEstadoId(
+            @RequestParam(defaultValue = "0", required = false) Integer page,
+            @RequestParam(defaultValue = "20", required = false) Integer size,
+            @RequestParam(defaultValue = "31", required = false) Integer paisId,
+            @RequestParam(defaultValue = "", required = false) String nomeEstado,
+            @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
+        return estadoService.findByNomeAndPaisId(nomeEstado, paisId, page, size, direction)
+                .map(e -> mapper.map(e, EstadoDTO.class));
     }
 
 }

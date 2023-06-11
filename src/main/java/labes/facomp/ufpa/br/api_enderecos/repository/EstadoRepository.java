@@ -12,4 +12,6 @@ public interface EstadoRepository extends CrudRepository<EstadoModel, Integer> {
 
     Page<EstadoModel> findByPaisId(Integer paisId, Pageable pageable);
 
+    Page<EstadoModel> findByNomeContainsIgnoreCaseAndPaisId(String nome, Integer paisId, Pageable pageable);
+
 }

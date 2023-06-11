@@ -15,7 +15,7 @@ public class CidadeDTO {
 
 	private Integer id;
 
-	private String name;
+	private String nome;
 
 	private BigDecimal latitude;
 

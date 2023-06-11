@@ -26,4 +26,11 @@ public class EstadoService {
                 PageRequest.of(page, size, Sort.by(direction, "nome")));
     }
 
+    public Page<EstadoModel> findByNomeAndPaisId(String estadoNome, Integer paisId, int page, int size,
+            Direction direction) {
+        return estadoRepository.findByNomeContainsIgnoreCaseAndPaisId(
+                estadoNome, paisId,
+                PageRequest.of(page, size, Sort.by(direction, "nome")));
+    }
+
 }

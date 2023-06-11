@@ -32,36 +32,60 @@ public class CidadeController {
 
     /**
      *
-     * @param id
+     * @param estadoId
      * @param page
      * @param size
      * @param direction
      * @return
      */
-    @GetMapping(params = "id")
+    @GetMapping(params = "estadoId")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<CidadeDTO> findByEstado(@RequestParam(required = false, defaultValue = "1") Integer id,
+    public Page<CidadeDTO> findByEstado(
             @RequestParam(defaultValue = "0", required = false) Integer page,
             @RequestParam(defaultValue = "20", required = false) Integer size,
+            @RequestParam(defaultValue = "1", required = false) Integer estadoId,
             @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
-        return cidadeService.findByEstadoId(id, page, size, direction).map(e -> mapper.map(e, CidadeDTO.class));
+        return cidadeService.findByEstadoId(estadoId, page, size, direction).map(e -> mapper.map(e, CidadeDTO.class));
     }
 
     /**
-     * 
-     * @param nome
+     *
+     * @param nomeEstado
      * @param page
      * @param size
      * @param direction
      * @return
      */
-    @GetMapping(params = "nome")
+    @GetMapping(params = "nomeEstado")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<CidadeDTO> findByEstado(@RequestParam(required = false, defaultValue = "") String nome,
+    public Page<CidadeDTO> findByEstado(
             @RequestParam(defaultValue = "0", required = false) Integer page,
             @RequestParam(defaultValue = "20", required = false) Integer size,
+            @RequestParam(defaultValue = "", required = false) String nomeEstado,
             @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
-        return cidadeService.findByEstadoNome(nome, page, size, direction).map(e -> mapper.map(e, CidadeDTO.class));
+        return cidadeService.findByEstadoNome(nomeEstado, page, size, direction)
+                .map(e -> mapper.map(e, CidadeDTO.class));
+    }
+
+    /**
+     *
+     * @param estadoId
+     * @param nomeCidade
+     * @param page
+     * @param size
+     * @param direction
+     * @return
+     */
+    @GetMapping(params = { "nomeCidade", "estadoId" })
+    @ResponseStatus(code = HttpStatus.OK)
+    public Page<CidadeDTO> findByNomeAndEstadoId(
+            @RequestParam(defaultValue = "0", required = false) Integer page,
+            @RequestParam(defaultValue = "20", required = false) Integer size,
+            @RequestParam(defaultValue = "", required = false) String nomeCidade,
+            @RequestParam(defaultValue = "1", required = false) Integer estadoId,
+            @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
+        return cidadeService.findByNomeAndEstadoId(nomeCidade, estadoId, page, size, direction)
+                .map(e -> mapper.map(e, CidadeDTO.class));
     }
 
 }
