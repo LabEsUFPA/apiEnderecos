@@ -5,11 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import labes.facomp.ufpa.br.api_enderecos.dto.EstadoDTO;
 import labes.facomp.ufpa.br.api_enderecos.dto.PaisDTO;
 import labes.facomp.ufpa.br.api_enderecos.service.PaisService;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +48,17 @@ public class PaisController {
             @RequestParam(defaultValue = "ASC", required = false) Direction direction,
             @RequestParam(defaultValue = "pt-BR", required = false) String internacionalizacao) {
         return paisService.findAll(page, size, direction, internacionalizacao).map(e -> mapper.map(e, PaisDTO.class));
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public PaisDTO findById(@PathVariable Integer id) {
+        return mapper.map(paisService.findById(id), PaisDTO.class);
     }
 
     /**

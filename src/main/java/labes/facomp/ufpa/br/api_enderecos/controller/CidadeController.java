@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,6 +47,17 @@ public class CidadeController {
             @RequestParam(defaultValue = "1", required = false) Integer estadoId,
             @RequestParam(defaultValue = "ASC", required = false) Direction direction) {
         return cidadeService.findByEstadoId(estadoId, page, size, direction).map(e -> mapper.map(e, CidadeDTO.class));
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public CidadeDTO findById(@PathVariable Integer id) {
+        return mapper.map(cidadeService.findById(id), CidadeDTO.class);
     }
 
     /**

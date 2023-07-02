@@ -33,4 +33,8 @@ public class EstadoService {
                 PageRequest.of(page, size, Sort.by(direction, "nome")));
     }
 
+    public EstadoModel findById(Integer id) {
+        return estadoRepository.findById(id).orElseThrow();
+    }
+
 }

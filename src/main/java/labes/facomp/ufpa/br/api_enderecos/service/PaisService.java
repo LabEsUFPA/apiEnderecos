@@ -56,4 +56,8 @@ public class PaisService {
         return paises;
     }
 
+    public PaisModel findById(Integer id) {
+        return paisRepository.findById(id).orElseThrow();
+    }
+
 }

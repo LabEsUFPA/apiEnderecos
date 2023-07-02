@@ -33,4 +33,8 @@ public class CidadeService {
                 PageRequest.of(page, size, Sort.by(direction, "nome")));
     }
 
+    public CidadeModel findById(Integer id) {
+        return cidadeRepository.findById(id).orElseThrow();
+    }
+
 }
