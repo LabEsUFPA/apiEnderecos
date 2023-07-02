@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import labes.facomp.ufpa.br.api_enderecos.dto.EstadoDTO;
 import labes.facomp.ufpa.br.api_enderecos.dto.PaisDTO;
 import labes.facomp.ufpa.br.api_enderecos.service.PaisService;
 import lombok.RequiredArgsConstructor;
